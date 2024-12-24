@@ -51,13 +51,6 @@ int parsePolyline(std::string polyline) {
   return res;
 }
 
-// std::vector<std::pair<double, double>> parseGeometryPolyline(std::string
-// polyline) { 	std::vector<std::pair<double, double>> res;
-//
-//
-//
-// 	return res;
-// }
 std::vector<std::string> splitPolyline(std::string input) {
   std::vector<std::string> polylineString;
   int curStart = 0;
