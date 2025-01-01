@@ -30,6 +30,7 @@ std::vector<std::string> parseGeometry(nlohmann::json osrmResp) {
 int parsePolyline(std::string polyline) {
   char const *polylineBytes = polyline.c_str();
   int res = 0;
+  std::cout << "tempe" << std::endl;
 
   bool neg = false;
   for (int i = 0; i < polyline.length(); i++) {
@@ -108,12 +109,12 @@ std::vector<double>
 getCoordinatesDistance(std::vector<std::pair<double, double>> coordinates) {
   std::vector<double> res;
 
-
   for (int i = 0; i < coordinates.size() - 1; i++) {
     std::pair<double, double> start = std::make_pair(
         degToRad(coordinates[i].first), degToRad(coordinates[i].second));
-    std::pair<double, double> end = std::make_pair(
-        degToRad(coordinates[i + 1].first), degToRad(coordinates[i + 1].second));
+    std::pair<double, double> end =
+        std::make_pair(degToRad(coordinates[i + 1].first),
+                       degToRad(coordinates[i + 1].second));
 
     double distance = latLongDistance(start, end);
     res.push_back(distance);
@@ -202,12 +203,13 @@ getPoints(std::pair<double, double> start, std::pair<double, double> end) {
 }
 
 int main() {
-  auto points = getPoints(std::make_pair(-6.24646, 106.82604),
-                          std::make_pair(-6.17776, 106.83075));
+  auto points = getPoints(std::make_pair(-6.22367, 106.8061675),
+                          std::make_pair(-6.1766575, 106.8177421));
 
-  for(const auto &point :points) {
-    std::cout << std::fixed << std::setprecision(5) << "["<< point.second << "," << point.first << "]," << std::endl;
+  for (const auto &point : points) {
+    std::cout << std::fixed << std::setprecision(5) << point.second << ","
+              << point.first << std::endl;
   }
-  
+
   return 0;
 }
